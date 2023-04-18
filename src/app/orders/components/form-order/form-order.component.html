@@ -1,0 +1,67 @@
+<!-- créer un formulaire -->
+
+<div class="container">
+  <h1>Ajouter une commande</h1>
+  <form [formGroup]="form" (ngSubmit)='onSubmit()'>
+    <!-- on peut appeler cette méthode comme on veut -->
+    <div class="form-group">
+      <label for="typePresta">type</label>
+      <input formControlName="typePresta" type="text" class="form-control" id="typePresta">
+    </div>
+
+    <div class="form-group">
+      <label for="client">client</label>
+      <input formControlName="client" type="text" class="form-control" id="client">
+    </div>
+
+
+    <div class="form-group">
+      <label for="nbJours">nbJours</label>
+      <input formControlName="nbJours" type="number" class="form-control" id="nbJours">
+    </div>
+
+    <div class="form-group">
+      <label for="tjmHt">tjmHt</label>
+      <input formControlName="tjmHt" type="number" class="form-control" id="tjmHt">
+    </div>
+
+    <div class="form-group">
+      <label for="tva">tva</label>
+      <input formControlName="tva" type="number" class="form-control" id="tva">
+    </div>
+
+    <div class="form-group">
+      <label for="state">state</label>
+      <select formControlName="state" class="form-control">
+        <!--
+        itérer dans les enums
+        importer enum dans ts + stocker
+
+        vous n'avez pas le droit d'itérer dans un enum
+        *ngFor ne fonctionne que sur des tableaux
+        Convertir stateOrder en tableau, alors on pourra itérer à l'intérieur
+        -->
+        <!-- ici property binding, on associe  l'attribut value à la valeur state-->
+        <option *ngFor="let state of stateOrder" [value]="state">{{ state }}</option>
+        <!-- [value]="state" pour avoir une valeur choisie par défaut -->
+
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="comment">comment</label>
+      <textarea formControlName="comment" class="form-control" id="comment"></textarea>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
+
+<!--
+  Pour réculérer les inputs au submit, leurs valeurs:
+1. ajouter un identifiant au formulaire
+ <form [formGroup]="form" (ngSubmit)='onSubmit()'>
+
+ -->
